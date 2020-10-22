@@ -1,0 +1,97 @@
+﻿@using FlyCalculator.Web.Models
+
+<EditForm Model="model">
+    <div class="form-group container">
+        <h5>@title</h5>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Etapa</label>
+            </div>
+            <div class="col-md-5">
+                <input type="datetime" @bind-value="model.Etapa.Tempo"/>
+            </div>
+            <div class="col-md-5">
+                <InputNumber @bind-Value="@EtapaLitros" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Alternado</label>
+            </div>
+            <div class="col-md-5">
+                <input type="datetime"@bind-value="model.Alternado.Tempo"/>
+            </div>
+            <div class="col-md-5">
+                <InputNumber @bind-Value="model.Alternado.Litros" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Reserva</label>
+            </div>
+            <div class="col-md-5">
+                <input type="datetime" @bind-value="model.Reserva.Tempo" />
+            </div>
+            <div class="col-md-5">
+                <InputNumber @bind-Value="model.Reserva.Litros" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label><b>Mínimo Requirido: </b></label>
+            </div>
+            <div class="col-md-5">
+                <input type="datetime" @bind-value="model.MinimoRequirido.Tempo" />
+            </div>
+            <div class="col-md-5">
+                <InputNumber @bind-Value="model.MinimoRequirido.Litros"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Adicional</label>
+            </div>
+            <div class="col-md-5">
+                <input type="datetime" @bind-value="model.Adicional.Tempo" />
+            </div>
+            <div class="col-md-5">
+                <InputNumber @bind-Value="model.Adicional.Litros" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label><b>Total a Bordo: </b></label>
+            </div>
+            <div class="col-md-5">
+                <input type="datetime" @bind-value="model.Total.Tempo" />
+            </div>
+            <div class="col-md-5">
+                <InputNumber @bind-Value="model.Total.Litros" />
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+	private string title = "Cálculo de Autonomia";
+	private CalculoAutonomia model = new CalculoAutonomia();
+
+	private decimal EtapaLitros
+	{
+		get => model.Etapa.Litros;
+		set
+		{
+			model.MinimoRequirido.Litros = (model.MinimoRequirido.Litros - model.Etapa.Litros) + value;
+			model.Etapa.Litros = value;
+		}
+	}
+
+	protected override void OnInitialized()
+	{
+	}
+
+	private void CalculaTotais()
+	{
+		Console.WriteLine("funcionou o bind");
+	}
+}

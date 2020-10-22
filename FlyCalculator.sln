@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{44583039-2BAE-4E2F-9476-9159364AE071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyCalculator.Web", "src\FlyCalculator.Web\FlyCalculator.Web.csproj", "{4BDCEFCE-ED25-4957-818F-610208B5E075}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60C617AE-E668-49B1-951A-4320DF882FB3}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Debug|x64.Build.0 = Debug|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Debug|x86.Build.0 = Debug|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Release|x64.ActiveCfg = Release|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Release|x64.Build.0 = Release|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Release|x86.ActiveCfg = Release|Any CPU
+		{4BDCEFCE-ED25-4957-818F-610208B5E075}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4BDCEFCE-ED25-4957-818F-610208B5E075} = {44583039-2BAE-4E2F-9476-9159364AE071}
+	EndGlobalSection
+EndGlobal
