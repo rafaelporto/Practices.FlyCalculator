@@ -1,6 +1,5 @@
 ﻿@using FlyCalculator.Web.Models
 
-<EditForm Model="model">
     <div class="form-group container">
         <h5>@title</h5>
         <div class="row">
@@ -8,10 +7,11 @@
                 <label>Etapa</label>
             </div>
             <div class="col-md-5">
-                <input type="datetime" @bind-value="model.Etapa.Tempo"/>
+                <input type="datetime" @bind-value="model.Etapa.Tempo"
+                       @oninput="e => CalculaTotaisTempo(e, model.Etapa)"/>
             </div>
             <div class="col-md-5">
-                <InputNumber @bind-Value="@EtapaLitros" />
+                <input type="number" min="0" value="@model.Etapa.Litros" @oninput="e => CalculaTotaisLitros(e, model.Etapa)"/>
             </div>
         </div>
         <div class="row">
@@ -22,7 +22,7 @@
                 <input type="datetime"@bind-value="model.Alternado.Tempo"/>
             </div>
             <div class="col-md-5">
-                <InputNumber @bind-Value="model.Alternado.Litros" />
+                <input type="number" value="@model.Alternado.Litros" @oninput="e => CalculaTotaisLitros(e, model.Alternado)"/>
             </div>
         </div>
         <div class="row">
@@ -33,7 +33,7 @@
                 <input type="datetime" @bind-value="model.Reserva.Tempo" />
             </div>
             <div class="col-md-5">
-                <InputNumber @bind-Value="model.Reserva.Litros" />
+                <input type="number" value="@model.Reserva.Litros" @oninput="e => CalculaTotaisLitros(e, model.Reserva)"/>
             </div>
         </div>
         <div class="row">
@@ -44,7 +44,7 @@
                 <input type="datetime" @bind-value="model.MinimoRequirido.Tempo" />
             </div>
             <div class="col-md-5">
-                <InputNumber @bind-Value="model.MinimoRequirido.Litros"/>
+                <input type="number" value="@model.MinimoRequirido.Litros" disabled/>
             </div>
         </div>
         <div class="row">
@@ -55,7 +55,7 @@
                 <input type="datetime" @bind-value="model.Adicional.Tempo" />
             </div>
             <div class="col-md-5">
-                <InputNumber @bind-Value="model.Adicional.Litros" />
+                <input type="number" value="@model.Adicional.Litros" @oninput="e => CalculaTotaisLitros(e, model.Adicional)"/>
             </div>
         </div>
         <div class="row">
@@ -66,32 +66,52 @@
                 <input type="datetime" @bind-value="model.Total.Tempo" />
             </div>
             <div class="col-md-5">
-                <InputNumber @bind-Value="model.Total.Litros" />
+                <input type="number" value="@model.Total.Litros" disabled/>
             </div>
         </div>
     </div>
-</EditForm>
 
 @code {
-	private string title = "Cálculo de Autonomia";
-	private CalculoAutonomia model = new CalculoAutonomia();
+    private string title = "Cálculo de Autonomia";
+    private CalculoAutonomia model = new CalculoAutonomia();
 
-	private decimal EtapaLitros
-	{
-		get => model.Etapa.Litros;
-		set
-		{
-			model.MinimoRequirido.Litros = (model.MinimoRequirido.Litros - model.Etapa.Litros) + value;
-			model.Etapa.Litros = value;
-		}
-	}
+    private decimal EtapaLitros
+    {
+        get => model.Etapa.Litros;
+        set
+        {
+            model.MinimoRequirido.Litros = (model.MinimoRequirido.Litros - model.Etapa.Litros) + value;
+            model.Etapa.Litros = value;
+        }
+    }
 
-	protected override void OnInitialized()
-	{
-	}
+    protected override void OnInitialized()
+    {
+    }
 
-	private void CalculaTotais()
-	{
-		Console.WriteLine("funcionou o bind");
-	}
+    private void CalculaTotaisLitros(ChangeEventArgs args, Autonomia autonomia)
+    {
+        model.MinimoRequirido.Litros = (model.MinimoRequirido.Litros - autonomia.Litros);
+        model.Total.Litros = (model.Total.Litros - autonomia.Litros);
+
+        if (decimal.TryParse(args.Value.ToString(), out decimal newValue))
+        {
+            model.MinimoRequirido.Litros += newValue;
+            model.Total.Litros += newValue;
+            autonomia.Litros = newValue;
+        }
+    }
+
+    private void CalculaTotaisTempo(ChangeEventArgs args, Autonomia autonomia)
+    {
+        model.MinimoRequirido.Tempo = (model.MinimoRequirido.Tempo - autonomia.Tempo);
+        model.Total.Tempo = (model.Total.Tempo - autonomia.Tempo);
+
+        if (TimeSpan.TryParse(args.Value.ToString(), out TimeSpan newValue))
+        {
+            model.MinimoRequirido.Tempo += newValue;
+            model.Total.Tempo += newValue;
+            autonomia.Tempo = newValue;
+        }
+    }
 }
