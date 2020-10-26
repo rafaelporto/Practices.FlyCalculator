@@ -7,7 +7,7 @@
             <label>Peso Máx. Decolagem</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="model.MaximoDecolagem" />
+            <input type="text" value="@Model.MaximoDecolagem" disabled/>
         </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
             <label>Peso Básico Vazio(PBV)</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="model.BasicoVazio" />
+            <input type="number" @bind-value="Model.BasicoVazio" @bind-value:event="oninput"/>
         </div>
     </div>
     <div class="row">
@@ -23,7 +23,7 @@
             <label><b>Peso disponível total: </b></label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="model.DisponivelTotal" />
+            <input type="text" value="@Model.DisponivelTotal.ToString("#.##")" disabled/>
         </div>
     </div>
     <div class="row">
@@ -31,7 +31,7 @@
             <label>Mínimo Comb. Requirido</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="model.MinimoCombustivel" />
+            <input type="text" value="@((Model.TotalAutonomia.MassaCombustivel).ToString("#,#.##"))" disabled/>
         </div>
     </div>
     <div class="row">
@@ -39,7 +39,7 @@
             <label>Peso dos tripulantes</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="model.Tripulantes" />
+            <input type="number" @bind-value="Model.Tripulantes" @bind-value:event="oninput"/>
         </div>
     </div>
     <div class="row">
@@ -47,12 +47,23 @@
             <label><b>Carga Paga Máxima: </b></label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="model.CargaMaxima" />
+            <input type="text" value="@Model.CargaMaxima.ToString("#.##")" disabled />
         </div>
     </div>
 </div>
 
 @code {
-    private string title = "Cálculo de Peso de Decolagem";
-    private CalculoPesoDecolagem model = new CalculoPesoDecolagem();
+	private string title = "Cálculo de Peso de Decolagem";
+	private CalculoPesoDecolagem Model { get; set; }
+
+	[Parameter]
+	public Autonomia TotalAutonomia { get; set; }
+
+	[Parameter]
+	public EventCallback<Autonomia> TotalAutonomiaChanged { get; set; }
+
+	protected override void OnInitialized()
+	{
+		Model = new CalculoPesoDecolagem(TotalAutonomia);
+	}
 }

@@ -7,10 +7,10 @@
                 <label>Etapa</label>
             </div>
             <div class="col-md-5">
-                <input type="time" value="@model.Etapa.Tempo" @oninput="e => AtualizaValores(e, model.Etapa)"/>
+                <input type="time" value="@Model.Etapa.Tempo" @oninput="e => AtualizaValores(e, Model.Etapa)"/>
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Etapa.Litros" disabled/>
+                <input type="text" value="@Model.Etapa.Litros.ToString("#,#.##")" disabled/>
             </div>
         </div>
         <div class="row">
@@ -18,10 +18,10 @@
                 <label>Alternado</label>
             </div>
             <div class="col-md-5">
-                <input type="time" value="@model.Alternado.Tempo" @onchange="e => AtualizaValores(e, model.Alternado)" />
+                <input type="time" value="@Model.Alternado.Tempo" @onchange="e => AtualizaValores(e, Model.Alternado)" />
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Alternado.Litros" disabled/>
+                <input type="text" value="@Model.Alternado.Litros.ToString("#,#.##")" disabled/>
             </div>
         </div>
         <div class="row">
@@ -29,10 +29,10 @@
                 <label>Reserva</label>
             </div>
             <div class="col-md-5">
-                <input type="time" value="@model.Reserva.Tempo" @onchange="e => AtualizaValores(e, model.Reserva)" />
+                <input type="time" value="@Model.Reserva.Tempo" @onchange="e => AtualizaValores(e, Model.Reserva)" />
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Reserva.Litros" disabled/>
+                <input type="text" value="@Model.Reserva.Litros.ToString("#,#.##")" disabled/>
             </div>
         </div>
         <div class="row">
@@ -40,10 +40,10 @@
                 <label><b>Mínimo Requirido: </b></label>
             </div>
             <div class="col-md-5">
-                <input type="time" value="@model.MinimoRequirido.Tempo.ToString("c")" disabled/>
+                <input type="time" value="@Model.MinimoRequirido.Tempo.ToString("c")" disabled/>
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.MinimoRequirido.Litros" disabled/>
+                <input type="text" value="@Model.MinimoRequirido.Litros.ToString("#,#.##")" disabled/>
             </div>
         </div>
         <div class="row">
@@ -51,10 +51,10 @@
                 <label>Adicional</label>
             </div>
             <div class="col-md-5">
-                <input type="time" value="@model.Adicional.Tempo" @onchange="e => AtualizaValores(e, model.Adicional)" />
+                <input type="time" value="@Model.Adicional.Tempo" @onchange="e => AtualizaValores(e, Model.Adicional)" />
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Adicional.Litros" disabled/>
+                <input type="text" value="@Model.Adicional.Litros.ToString("#,#.##")" disabled/>
             </div>
         </div>
         <div class="row">
@@ -62,26 +62,33 @@
                 <label><b>Total a Bordo: </b></label>
             </div>
             <div class="col-md-5">
-                <input type="text" value="@model.Total.Tempo.ToString("c")" disabled/>
+                <input type="text" value="@Model.Total.Tempo.ToString("c")" disabled/>
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Total.Litros" disabled/>
+                <input type="text" value="@Model.Total.Litros.ToString("#,#.##")" disabled/>
             </div>
         </div>
     </div>
 
 @code {
-    private string title = "Cálculo de Autonomia";
-    protected CalculoAutonomia model = new CalculoAutonomia();
+	private string title = "Cálculo de Autonomia";
 
-    private void AtualizaValores(ChangeEventArgs args, Autonomia autonomia)
-    {
-        if (TimeSpan.TryParse(args.Value.ToString(), out TimeSpan newValue))
-        {
-            autonomia.Litros = model.CalculaQuantidade(autonomia.Tempo);
-            autonomia.Tempo = newValue;
-            model.CalculaMinimoRequirido();
-            model.CalculaTotal();
-        }
-    }
+	[Parameter]
+	public CalculoAutonomia Model { get; set; } = new CalculoAutonomia();
+
+    [Parameter]
+	public EventCallback<CalculoAutonomia> ModelChanged { get; set; }
+
+	private async Task AtualizaValores(ChangeEventArgs args, Autonomia autonomia)
+	{
+		if (TimeSpan.TryParse(args.Value.ToString(), out TimeSpan newValue))
+		{
+			autonomia.Tempo = newValue;
+			autonomia.Litros = Model.CalculaQuantidade(newValue);
+			Model.CalculaMinimoRequirido();
+			Model.CalculaTotal();
+		}
+
+        await ModelChanged.InvokeAsync(Model);
+	}
 }
