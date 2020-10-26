@@ -25,7 +25,7 @@ namespace FlyCalculator.Web.Models
 
         public decimal CalculaQuantidade(TimeSpan tempo)
         {
-            var cessna = 22.0M; //consumo de litro por hora
+            var cessna = 21.0M; //consumo de litro por hora
             return cessna * (decimal)tempo.TotalHours;
         }
     }

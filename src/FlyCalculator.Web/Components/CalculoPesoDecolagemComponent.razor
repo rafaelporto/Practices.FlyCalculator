@@ -15,7 +15,7 @@
             <label>Peso Básico Vazio(PBV)</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="Model.BasicoVazio" />
+            <input type="number" @bind-value="Model.BasicoVazio" @bind-value:event="oninput"/>
         </div>
     </div>
     <div class="row">
@@ -31,7 +31,7 @@
             <label>Mínimo Comb. Requirido</label>
         </div>
         <div class="col-md-5">
-            <input type="text" value="@((Model.MinimoRequerido.Litros / 0.819M).ToString("#,#.##"))" disabled/>
+            <input type="text" value="@((Model.TotalAutonomia.MassaCombustivel).ToString("#,#.##"))" disabled/>
         </div>
     </div>
     <div class="row">
@@ -39,7 +39,7 @@
             <label>Peso dos tripulantes</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="Model.Tripulantes" />
+            <input type="number" @bind-value="Model.Tripulantes" @bind-value:event="oninput"/>
         </div>
     </div>
     <div class="row">
@@ -57,13 +57,13 @@
 	private CalculoPesoDecolagem Model { get; set; }
 
 	[Parameter]
-	public Autonomia MinimoRequirido { get; set; }
+	public Autonomia TotalAutonomia { get; set; }
 
 	[Parameter]
-	public EventCallback<Autonomia> MinimoRequiridoChanged { get; set; }
+	public EventCallback<Autonomia> TotalAutonomiaChanged { get; set; }
 
 	protected override void OnInitialized()
 	{
-		Model = new CalculoPesoDecolagem(MinimoRequirido);
+		Model = new CalculoPesoDecolagem(TotalAutonomia);
 	}
 }

@@ -11,5 +11,6 @@ namespace FlyCalculator.Web.Models
 
         [Range(typeof(decimal), "0", "1000", ErrorMessage = "A quantidade de litros deve ser entre {0} e {1}.")]
         public decimal Litros { get; set; }
+        public decimal MassaCombustivel => Litros * 0.72M;
     }
 }
