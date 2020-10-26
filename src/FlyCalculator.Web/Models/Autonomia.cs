@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace FlyCalculator.Web.Models
 {
