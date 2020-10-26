@@ -7,11 +7,10 @@
                 <label>Etapa</label>
             </div>
             <div class="col-md-5">
-                <input type="datetime" @bind-value="model.Etapa.Tempo"
-                       @oninput="e => CalculaTotaisTempo(e, model.Etapa)"/>
+                <input type="time" value="@model.Etapa.Tempo" @oninput="e => AtualizaValores(e, model.Etapa)"/>
             </div>
             <div class="col-md-5">
-                <input type="number" min="0" value="@model.Etapa.Litros" @oninput="e => CalculaTotaisLitros(e, model.Etapa)"/>
+                <input type="number" value="@model.Etapa.Litros" disabled/>
             </div>
         </div>
         <div class="row">
@@ -19,10 +18,10 @@
                 <label>Alternado</label>
             </div>
             <div class="col-md-5">
-                <input type="datetime"@bind-value="model.Alternado.Tempo"/>
+                <input type="time" value="@model.Alternado.Tempo" @onchange="e => AtualizaValores(e, model.Alternado)" />
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Alternado.Litros" @oninput="e => CalculaTotaisLitros(e, model.Alternado)"/>
+                <input type="number" value="@model.Alternado.Litros" disabled/>
             </div>
         </div>
         <div class="row">
@@ -30,10 +29,10 @@
                 <label>Reserva</label>
             </div>
             <div class="col-md-5">
-                <input type="datetime" @bind-value="model.Reserva.Tempo" />
+                <input type="time" value="@model.Reserva.Tempo" @onchange="e => AtualizaValores(e, model.Reserva)" />
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Reserva.Litros" @oninput="e => CalculaTotaisLitros(e, model.Reserva)"/>
+                <input type="number" value="@model.Reserva.Litros" disabled/>
             </div>
         </div>
         <div class="row">
@@ -41,7 +40,7 @@
                 <label><b>Mínimo Requirido: </b></label>
             </div>
             <div class="col-md-5">
-                <input type="datetime" @bind-value="model.MinimoRequirido.Tempo" />
+                <input type="time" value="@model.MinimoRequirido.Tempo.ToString("c")" disabled/>
             </div>
             <div class="col-md-5">
                 <input type="number" value="@model.MinimoRequirido.Litros" disabled/>
@@ -52,10 +51,10 @@
                 <label>Adicional</label>
             </div>
             <div class="col-md-5">
-                <input type="datetime" @bind-value="model.Adicional.Tempo" />
+                <input type="time" value="@model.Adicional.Tempo" @onchange="e => AtualizaValores(e, model.Adicional)" />
             </div>
             <div class="col-md-5">
-                <input type="number" value="@model.Adicional.Litros" @oninput="e => CalculaTotaisLitros(e, model.Adicional)"/>
+                <input type="number" value="@model.Adicional.Litros" disabled/>
             </div>
         </div>
         <div class="row">
@@ -63,7 +62,7 @@
                 <label><b>Total a Bordo: </b></label>
             </div>
             <div class="col-md-5">
-                <input type="datetime" @bind-value="model.Total.Tempo" />
+                <input type="text" value="@model.Total.Tempo.ToString("c")" disabled/>
             </div>
             <div class="col-md-5">
                 <input type="number" value="@model.Total.Litros" disabled/>
@@ -73,45 +72,16 @@
 
 @code {
     private string title = "Cálculo de Autonomia";
-    private CalculoAutonomia model = new CalculoAutonomia();
+    protected CalculoAutonomia model = new CalculoAutonomia();
 
-    private decimal EtapaLitros
+    private void AtualizaValores(ChangeEventArgs args, Autonomia autonomia)
     {
-        get => model.Etapa.Litros;
-        set
-        {
-            model.MinimoRequirido.Litros = (model.MinimoRequirido.Litros - model.Etapa.Litros) + value;
-            model.Etapa.Litros = value;
-        }
-    }
-
-    protected override void OnInitialized()
-    {
-    }
-
-    private void CalculaTotaisLitros(ChangeEventArgs args, Autonomia autonomia)
-    {
-        model.MinimoRequirido.Litros = (model.MinimoRequirido.Litros - autonomia.Litros);
-        model.Total.Litros = (model.Total.Litros - autonomia.Litros);
-
-        if (decimal.TryParse(args.Value.ToString(), out decimal newValue))
-        {
-            model.MinimoRequirido.Litros += newValue;
-            model.Total.Litros += newValue;
-            autonomia.Litros = newValue;
-        }
-    }
-
-    private void CalculaTotaisTempo(ChangeEventArgs args, Autonomia autonomia)
-    {
-        model.MinimoRequirido.Tempo = (model.MinimoRequirido.Tempo - autonomia.Tempo);
-        model.Total.Tempo = (model.Total.Tempo - autonomia.Tempo);
-
         if (TimeSpan.TryParse(args.Value.ToString(), out TimeSpan newValue))
         {
-            model.MinimoRequirido.Tempo += newValue;
-            model.Total.Tempo += newValue;
+            autonomia.Litros = model.CalculaQuantidade(autonomia.Tempo);
             autonomia.Tempo = newValue;
+            model.CalculaMinimoRequirido();
+            model.CalculaTotal();
         }
     }
 }
