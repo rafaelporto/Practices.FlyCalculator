@@ -5,7 +5,7 @@
 <h3>@title</h3>
 <CalculoAutonomiaComponent @bind-Model="calculoAutonomia"></CalculoAutonomiaComponent>
 <CalculoPesoDecolagemComponent @bind-TotalAutonomia="calculoAutonomia.Total"></CalculoPesoDecolagemComponent>
-<CalculoPesoBalanceamentoComponent></CalculoPesoBalanceamentoComponent>
+<CalculoPesoBalanceamentoComponent @bind-CalculoAutonomia="calculoAutonomia"></CalculoPesoBalanceamentoComponent>
 
 @code {
     string title = "Manifesto de Peso e Balanceamento";

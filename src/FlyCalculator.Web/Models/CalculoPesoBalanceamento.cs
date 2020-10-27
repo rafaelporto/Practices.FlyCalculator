@@ -1,22 +1,25 @@
-﻿namespace FlyCalculator.Web.Models
+﻿using System;
+
+namespace FlyCalculator.Web.Models
 {
     public class CalculoPesoBalanceamento
     {
         public PesoBalanceamento PesoBasicoVazio { get; set; } = new PesoBalanceamento();
-        public PesoBalanceamento Ocupantes { get; set; }
-        public PesoBalanceamento Bagageiro { get; set; } = new PesoBalanceamento();
-        public PesoBalanceamento PesoZeroCombustivel { get; set; } = new PesoBalanceamento();
-        public PesoBalanceamento Combustivel { get; set; } = new PesoBalanceamento();
-        public PesoBalanceamento PesoDecolagem { get; set; } = new PesoBalanceamento();
-        public PesoBalanceamento CombustivelEtapa { get; set; } = new PesoBalanceamento();
-        public PesoBalanceamento PesoPouso { get; set; } = new PesoBalanceamento();
+        public Ocupantes Ocupantes { get; set; } = new Ocupantes();
+        public Bagageiro Bagageiro { get; set; } = new Bagageiro();
+        public PesoZeroCombustivel PesoZeroCombustivel { get; set; }
+        public Combustivel Combustivel { get; set; }
+        public PesoDecolagem PesoDecolagem { get; set; }
+        public CombustivelEtapa CombustivelEtapa { get; set; }
+        //public PesoPouso PesoPouso { get; set; }
 
-        public CalculoPesoBalanceamento()
+        public CalculoPesoBalanceamento(CalculoAutonomia calculoAutonomia)
         {
-            Ocupantes = new PesoBalanceamento() { Braco = 0.990M };
-            Bagageiro = new PesoBalanceamento() { Braco = 1.620M };
-            Combustivel = new PesoBalanceamento() { Braco = 1.0M };
-            CombustivelEtapa = new PesoBalanceamento() { Braco = 1.0M };
+            PesoZeroCombustivel = new PesoZeroCombustivel(PesoBasicoVazio, Ocupantes, Bagageiro);
+            Combustivel = new Combustivel(calculoAutonomia.Total);
+            PesoDecolagem = new PesoDecolagem(PesoZeroCombustivel, Combustivel);
+            CombustivelEtapa = new CombustivelEtapa(calculoAutonomia.Etapa);
+            //PesoPouso = new PesoPouso(PesoDecolagem, CombustivelEtapa);
         }
     }
 }

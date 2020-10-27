@@ -11,3 +11,4 @@ bld/
 .vs/
 src/FlyCalculator.Web/bin
 src/FlyCalculator.Web/obj
+/src/FlyCalculator.Web/wwwroot/debug.log

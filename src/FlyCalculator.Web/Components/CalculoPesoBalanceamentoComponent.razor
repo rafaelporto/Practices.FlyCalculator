@@ -7,13 +7,13 @@
             <label>Peso Básico Vazio</label>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoBasicoVazio.Peso" />
+            <input type="number" @bind-value="Model.PesoBasicoVazio.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoBasicoVazio.Braco" />
+            <input type="number" @bind-value="Model.PesoBasicoVazio.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.PesoBasicoVazio.Momento" />
+            <input type="number" @bind-value="Model.PesoBasicoVazio.Momento" />
         </div>
     </div>
     <div class="row">
@@ -21,13 +21,13 @@
             <label>Ocupantes assentos dianteiros</label>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.Ocupantes.Peso" />
+            <input type="number" @bind-value="Model.Ocupantes.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.Ocupantes.Braco" />
+            <input type="number" value="@Model.Ocupantes.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.Ocupantes.Momento" />
+            <input type="number" @bind-value="Model.Ocupantes.Momento" />
         </div>
     </div>
     <div class="row">
@@ -35,13 +35,13 @@
             <label>Bagageiro (Max. 54 Kg)</label>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.Bagageiro.Peso" />
+            <input type="number" @bind-value="Model.Bagageiro.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.Bagageiro.Braco" />
+            <input type="number" value="@Model.Bagageiro.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.Bagageiro.Momento" />
+            <input type="number" @bind-value="Model.Bagageiro.Momento" />
         </div>
     </div>
     <div class="row">
@@ -49,13 +49,13 @@
             <label>Peso Zero Combustível</label>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoZeroCombustivel.Peso" />
+            <input type="number" value="@Model.PesoZeroCombustivel.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoZeroCombustivel.Braco" />
+            <input type="number" value="@Model.PesoZeroCombustivel.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.PesoZeroCombustivel.Momento" />
+            <input type="number" value="@Model.PesoZeroCombustivel.Momento" />
         </div>
     </div>
     <div class="row">
@@ -63,13 +63,13 @@
             <label>Combustível (___ Lts x 0.72 kg/l)</label>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.Combustivel.Peso" />
+            <input type="number" value="@Model.Combustivel.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.Combustivel.Braco" />
+            <input type="number" value="@Model.Combustivel.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.Combustivel.Momento" />
+            <input type="number" value="@Model.Combustivel.Momento" />
         </div>
     </div>
     <div class="row">
@@ -77,47 +77,57 @@
             <label>Peso de Decolagem (Max. 757 Kg)</label>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoDecolagem.Peso" />
+            <input type="number" value="@Model.PesoDecolagem.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoDecolagem.Braco" />
+            <input type="number" value="@Model.PesoDecolagem.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.PesoDecolagem.Momento" />
+            <input type="number" value="@Model.PesoDecolagem.Momento" />
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <label>Comb. da Etapa (___ Lts x 0.72 kg/l)</label>
+            <div class="col-md-3">
+                <label>Comb. da Etapa (___ Lts x 0.72 kg/l)</label>
+            </div>
+            <div class="col-md-3">
+                <input type="number" value="@Model.CombustivelEtapa.Peso" />
+            </div>
+            <div class="col-md-3">
+                <input type="number" value="@Model.CombustivelEtapa.Braco" />
+            </div>
+            <div class="col-md-3">
+                <input type="number" value="@Model.CombustivelEtapa.Momento" />
+            </div>
         </div>
-        <div class="col-md-3">
-            <input type="number" @bind-value="model.CombustivelEtapa.Peso" />
-        </div>
-        <div class="col-md-3">
-            <input type="number" @bind-value="model.CombustivelEtapa.Braco" />
-        </div>
-        <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.CombustivelEtapa.Momento" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <label>Peso de Pouso (Max. 757 Kg)</label>
-        </div>
-        <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoPouso.Peso" />
-        </div>
-        <div class="col-md-3">
-            <input type="number" @bind-value="model.PesoPouso.Braco" />
-        </div>
-        <div class="col-md-3">
-            <input type="number" readonly @bind-value="model.PesoPouso.Momento" />
-        </div>
-    </div>
+        @*<div class="row">
+            <div class="col-md-3">
+                <label>Peso de Pouso (Max. 757 Kg)</label>
+            </div>
+            <div class="col-md-3">
+                <input type="number" value="@Model.PesoPouso.Peso" />
+            </div>
+            <div class="col-md-3">
+                <input type="number" value="@Model.PesoPouso.Braco" />
+            </div>
+            <div class="col-md-3">
+                <input type="number" value="@Model.PesoPouso.Momento" />
+            </div>
+        </div>*@
 </div>
 
 @code {
     private string title = "Cálculos de Peso e Balanceamento";
+    [Parameter]
+    public CalculoAutonomia CalculoAutonomia { get; set; }
 
-    private CalculoPesoBalanceamento model = new CalculoPesoBalanceamento();
+    [Parameter]
+    public EventCallback<CalculoAutonomia> CalculoAutonomiaChanged { get; set; }
+
+    private CalculoPesoBalanceamento Model { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model = new CalculoPesoBalanceamento(CalculoAutonomia);
+    }
 }
