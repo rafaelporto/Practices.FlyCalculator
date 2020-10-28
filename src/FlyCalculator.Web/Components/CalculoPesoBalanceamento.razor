@@ -1,0 +1,237 @@
+﻿@namespace FlyCalculator.Web.Components
+
+<div class="form-group container">
+	<h5>@Title</h5>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Peso Básico Vazio</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoBasicoVazio.Peso.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="number" class="form-control" @bind-value="PesoBasicoVazio.Braco" @bind-value:event="oninput" />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoBasicoVazio.Momento.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Ocupantes assentos dianteiros</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Ocupantes.Peso" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Ocupantes.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Ocupantes.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Bagageiro (Max. 54 Kg)</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="number" class="form-control" @bind-value="Bagageiro.Peso" @bind-value:event="oninput" />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Bagageiro.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Bagageiro.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Peso Zero Combustível</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoZeroCombustivel.Peso.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoZeroCombustivel.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoZeroCombustivel.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Combustível</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Combustivel.Peso.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Combustivel.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@Combustivel.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Peso de Decolagem</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoDecolagem.Peso.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoDecolagem.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoDecolagem.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Comb. da Etapa</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@CombustivelEtapa.Peso.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@CombustivelEtapa.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@CombustivelEtapa.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<label>Peso de Pouso</label>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoPouso.Peso.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoPouso.Braco.ToString("#,0.##0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">M</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class=" input-group">
+				<input type="text" class="form-control" value="@PesoPouso.Momento.ToString("#,0.#0")" disabled />
+				<div class="input-group-append">
+					<span class="input-group-text">Kg x M</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

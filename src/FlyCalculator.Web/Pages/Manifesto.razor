@@ -1,13 +1,8 @@
 ﻿@using FlyCalculator.Web.Components
-@using FlyCalculator.Web.Models
+@namespace FlyCalculator.Web.Pages
 @page "/manifesto"
 
-<h3>@title</h3>
-<CalculoAutonomiaComponent @bind-Model="calculoAutonomia"></CalculoAutonomiaComponent>
-<CalculoPesoDecolagemComponent @bind-TotalAutonomia="calculoAutonomia.Total"></CalculoPesoDecolagemComponent>
-<CalculoPesoBalanceamentoComponent @bind-CalculoAutonomia="calculoAutonomia"></CalculoPesoBalanceamentoComponent>
-
-@code {
-    string title = "Manifesto de Peso e Balanceamento";
-    protected CalculoAutonomia calculoAutonomia = new CalculoAutonomia();
-}
+<h3>@Title</h3>
+<CalculoAutonomia @bind-Total="Total" @bind-Etapa="Etapa"></CalculoAutonomia>
+<CalculoPesoDecolagem @bind-Pesos="Pesos" TotalAutonomia="Total"></CalculoPesoDecolagem>
+<CalculoPesoBalanceamento Etapa="Etapa" Total="Total" Pesos="Pesos"></CalculoPesoBalanceamento>

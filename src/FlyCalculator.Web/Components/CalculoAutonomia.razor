@@ -1,0 +1,71 @@
+﻿@namespace FlyCalculator.Web.Components
+
+    <div class="form-group container">
+        <h5>@Title</h5>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Etapa</label>
+            </div>
+            <div class="col-md-5">
+                <input type="time" value="@Etapa.Tempo" @oninput="e => AtualizaValores(e, Etapa)"/>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Etapa.Litros.ToString("#,0.#0")" disabled/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Alternado</label>
+            </div>
+            <div class="col-md-5">
+                <input type="time" value="@Alternado.Tempo" @onchange="e => AtualizaValores(e, Alternado)" />
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Alternado.Litros.ToString("#,0.#0")" disabled/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Reserva</label>
+            </div>
+            <div class="col-md-5">
+                <input type="time" value="@Reserva.Tempo" @onchange="e => AtualizaValores(e, Reserva)" />
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Reserva.Litros.ToString("#,0.#0")" disabled/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label><b>Mínimo Requirido: </b></label>
+            </div>
+            <div class="col-md-5">
+                <input type="time" value="@MinimoRequirido.Tempo.ToString("c")" disabled/>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@MinimoRequirido.Litros.ToString("#,0.#0")" disabled/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Adicional</label>
+            </div>
+            <div class="col-md-5">
+                <input type="time" value="@Adicional.Tempo" @onchange="e => AtualizaValores(e, Adicional)" />
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Adicional.Litros.ToString("#,0.#0")" disabled/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label><b>Total a Bordo: </b></label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Total.Tempo.ToString("c")" disabled/>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Total.Litros.ToString("#,0.#0")" disabled/>
+            </div>
+        </div>
+    </div>

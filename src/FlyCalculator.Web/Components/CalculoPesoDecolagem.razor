@@ -1,13 +1,13 @@
-﻿@using FlyCalculator.Web.Models
+﻿@namespace FlyCalculator.Web.Components
 
 <div class="form-group container">
-    <h5>@title</h5>
+    <h5>@Title</h5>
     <div class="row">
         <div class="col-md-2">
             <label>Peso Máx. Decolagem</label>
         </div>
         <div class="col-md-5">
-            <input type="text" value="@Model.MaximoDecolagem" disabled/>
+            <input type="text" value="@Pesos.MaximoDecolagem" disabled/>
         </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
             <label>Peso Básico Vazio(PBV)</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="Model.BasicoVazio" @bind-value:event="oninput"/>
+            <input type="number" @bind-value="Pesos.BasicoVazio" @bind-value:event="oninput"/>
         </div>
     </div>
     <div class="row">
@@ -23,7 +23,7 @@
             <label><b>Peso disponível total: </b></label>
         </div>
         <div class="col-md-5">
-            <input type="text" value="@Model.DisponivelTotal.ToString("#.##")" disabled/>
+            <input type="text" value="@Pesos.DisponivelTotal.ToString("#,0.#0")" disabled/>
         </div>
     </div>
     <div class="row">
@@ -31,7 +31,7 @@
             <label>Mínimo Comb. Requirido</label>
         </div>
         <div class="col-md-5">
-            <input type="text" value="@((Model.TotalAutonomia.MassaCombustivel).ToString("#,#.##"))" disabled/>
+            <input type="text" value="@TotalAutonomia.MassaCombustivel.ToString("#,0.#0")" disabled/>
         </div>
     </div>
     <div class="row">
@@ -39,7 +39,7 @@
             <label>Peso dos tripulantes</label>
         </div>
         <div class="col-md-5">
-            <input type="number" @bind-value="Model.Tripulantes" @bind-value:event="oninput"/>
+            <input type="number" @bind-value="Pesos.Tripulantes" @bind-value:event="oninput"/>
         </div>
     </div>
     <div class="row">
@@ -47,24 +47,7 @@
             <label><b>Carga Paga Máxima: </b></label>
         </div>
         <div class="col-md-5">
-            <input type="text" value="@Model.CargaMaxima.ToString("#.##")" disabled />
+            <input type="text" value="@Pesos.CargaMaxima.ToString("#,0.#0")" disabled />
         </div>
     </div>
 </div>
-
-@code {
-	private string title = "Cálculo de Peso de Decolagem";
-	private CalculoPesoDecolagem Model { get; set; }
-
-	[Parameter]
-	public Autonomia TotalAutonomia { get; set; }
-
-	[Parameter]
-	public EventCallback<Autonomia> TotalAutonomiaChanged { get; set; }
-
-	protected override void OnInitialized()
-	{
-        Console.WriteLine("Entrou no OnInitialized de CalculoPesoBalanceamentoComponent");
-		Model = new CalculoPesoDecolagem(TotalAutonomia);
-	}
-}
