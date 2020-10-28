@@ -13,7 +13,7 @@
             <input type="number" @bind-value="Model.PesoBasicoVazio.Braco" />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="Model.PesoBasicoVazio.Momento" />
+            <input type="text" value="@Model.PesoBasicoVazio.Momento.ToString("#,#.###")" disabled/>
         </div>
     </div>
     <div class="row">
@@ -24,10 +24,10 @@
             <input type="number" @bind-value="Model.Ocupantes.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.Ocupantes.Braco" />
+            <input type="text" value="@Model.Ocupantes.Braco.ToString("#,#.###")" disabled/>
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="Model.Ocupantes.Momento" />
+            <input type="text" value="@Model.Ocupantes.Momento.ToString("#,#.###")" disabled/>
         </div>
     </div>
     <div class="row">
@@ -38,10 +38,10 @@
             <input type="number" @bind-value="Model.Bagageiro.Peso" />
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.Bagageiro.Braco" />
+            <input type="text" value="@Model.Bagageiro.Braco.ToString("#,#.###")" disabled />
         </div>
         <div class="col-md-3">
-            <input type="number" @bind-value="Model.Bagageiro.Momento" />
+            <input type="text" value="@Model.Bagageiro.Momento.ToString("#,#.###")" disabled />
         </div>
     </div>
     <div class="row">
@@ -49,60 +49,60 @@
             <label>Peso Zero Combustível</label>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.PesoZeroCombustivel.Peso" />
+            <input type="text" value="@Model.PesoZeroCombustivel.Peso.ToString("#,#.###")" disabled />
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.PesoZeroCombustivel.Braco" />
+            <input type="text" value="@Model.PesoZeroCombustivel.Braco.ToString("#,#.###")" disabled />
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.PesoZeroCombustivel.Momento" />
+            <input type="text" value="@Model.PesoZeroCombustivel.Momento.ToString("#,#.###")" disabled />
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
-            <label>Combustível (___ Lts x 0.72 kg/l)</label>
+            <label>Combustível</label>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.Combustivel.Peso" />
+            <input type="text" value="@Model.Combustivel.Peso.ToString("#,#.###")" disabled/>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.Combustivel.Braco" />
+            <input type="text" value="@Model.Combustivel.Braco.ToString("#,#.###")" disabled/>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.Combustivel.Momento" />
+            <input type="text" value="@Model.Combustivel.Momento.ToString("#,#.###")" disabled/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
-            <label>Peso de Decolagem (Max. 757 Kg)</label>
+            <label>Peso de Decolagem</label>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.PesoDecolagem.Peso" />
+            <input type="text" value="@Model.PesoDecolagem.Peso.ToString("#,#.###")" disabled/>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.PesoDecolagem.Braco" />
+            <input type="text" value="@Model.PesoDecolagem.Braco.ToString("#,#.###")" disabled/>
         </div>
         <div class="col-md-3">
-            <input type="number" value="@Model.PesoDecolagem.Momento" />
+            <input type="text" value="@Model.PesoDecolagem.Momento.ToString("#,#.###")" disabled/>
         </div>
     </div>
     <div class="row">
             <div class="col-md-3">
-                <label>Comb. da Etapa (___ Lts x 0.72 kg/l)</label>
+                <label>Comb. da Etapa</label>
             </div>
             <div class="col-md-3">
-                <input type="number" value="@Model.CombustivelEtapa.Peso" />
+                <input type="text" value="@Model.CombustivelEtapa.Peso.ToString("#,#.###")" disabled />
             </div>
             <div class="col-md-3">
-                <input type="number" value="@Model.CombustivelEtapa.Braco" />
+                <input type="text" value="@Model.CombustivelEtapa.Braco.ToString("#,#.###")" disabled />
             </div>
             <div class="col-md-3">
-                <input type="number" value="@Model.CombustivelEtapa.Momento" />
+                <input type="text" value="@Model.CombustivelEtapa.Momento.ToString("#,#.###")" disabled />
             </div>
         </div>
         @*<div class="row">
             <div class="col-md-3">
-                <label>Peso de Pouso (Max. 757 Kg)</label>
+                <label>Peso de Pouso</label>
             </div>
             <div class="col-md-3">
                 <input type="number" value="@Model.PesoPouso.Peso" />
@@ -117,17 +117,17 @@
 </div>
 
 @code {
-    private string title = "Cálculos de Peso e Balanceamento";
-    [Parameter]
-    public CalculoAutonomia CalculoAutonomia { get; set; }
+	private string title = "Cálculos de Peso e Balanceamento";
+	[Parameter]
+	public CalculoAutonomia CalculoAutonomia { get; set; }
 
-    [Parameter]
-    public EventCallback<CalculoAutonomia> CalculoAutonomiaChanged { get; set; }
+	[Parameter]
+	public EventCallback<CalculoAutonomia> CalculoAutonomiaChanged { get; set; }
 
-    private CalculoPesoBalanceamento Model { get; set; }
+	private CalculoPesoBalanceamento Model { get; set; }
 
-    protected override void OnInitialized()
-    {
-        Model = new CalculoPesoBalanceamento(CalculoAutonomia);
-    }
+	protected override void OnInitialized()
+	{
+		Model = new CalculoPesoBalanceamento(CalculoAutonomia);
+	}
 }
