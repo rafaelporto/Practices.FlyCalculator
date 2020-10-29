@@ -1,13 +1,13 @@
 {
-  "name": "FlyCalculator.Web",
-  "short_name": "FlyCalculator.Web",
+  "name": "Fly Calculator",
+  "short_name": "Fly Calculator",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#03173d",
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "calculator.png",
       "type": "image/png",
       "sizes": "512x512"
     }
