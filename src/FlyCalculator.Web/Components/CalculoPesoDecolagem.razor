@@ -1,53 +1,55 @@
 ﻿@namespace FlyCalculator.Web.Components
 
-<div class="form-group container">
-    <h5>@Title</h5>
-    <div class="row">
-        <div class="col-md-2">
-            <label>Peso Máx. Decolagem</label>
+<div class="card">
+	<div class="card-header">@Title</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <label>Peso Máx. Decolagem</label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Pesos.MaximoDecolagem" disabled/>
+            </div>
         </div>
-        <div class="col-md-5">
-            <input type="text" value="@Pesos.MaximoDecolagem" disabled/>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Peso Básico Vazio(PBV)</label>
+            </div>
+            <div class="col-md-5">
+                <input type="number" @bind-value="Pesos.BasicoVazio" @bind-value:event="oninput"/>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label>Peso Básico Vazio(PBV)</label>
+        <div class="row">
+            <div class="col-md-2">
+                <label><b>Peso disponível total: </b></label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Pesos.DisponivelTotal.ToString("#,0.#0")" disabled/>
+            </div>
         </div>
-        <div class="col-md-5">
-            <input type="number" @bind-value="Pesos.BasicoVazio" @bind-value:event="oninput"/>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Mínimo Comb. Requirido</label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@TotalAutonomia.MassaCombustivel.ToString("#,0.#0")" disabled/>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label><b>Peso disponível total: </b></label>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Peso dos tripulantes</label>
+            </div>
+            <div class="col-md-5">
+                <input type="number" @bind-value="Pesos.Tripulantes" @bind-value:event="oninput"/>
+            </div>
         </div>
-        <div class="col-md-5">
-            <input type="text" value="@Pesos.DisponivelTotal.ToString("#,0.#0")" disabled/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label>Mínimo Comb. Requirido</label>
-        </div>
-        <div class="col-md-5">
-            <input type="text" value="@TotalAutonomia.MassaCombustivel.ToString("#,0.#0")" disabled/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label>Peso dos tripulantes</label>
-        </div>
-        <div class="col-md-5">
-            <input type="number" @bind-value="Pesos.Tripulantes" @bind-value:event="oninput"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label><b>Carga Paga Máxima: </b></label>
-        </div>
-        <div class="col-md-5">
-            <input type="text" value="@Pesos.CargaMaxima.ToString("#,0.#0")" disabled />
+        <div class="row">
+            <div class="col-md-2">
+                <label><b>Carga Paga Máxima: </b></label>
+            </div>
+            <div class="col-md-5">
+                <input type="text" value="@Pesos.CargaMaxima.ToString("#,0.#0")" disabled />
+            </div>
         </div>
     </div>
 </div>

@@ -1,17 +1,22 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine AS base
 WORKDIR /app
 
-COPY *.sln .
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine AS publish
+WORKDIR /build
 COPY . .
-WORKDIR /app/src/FlyCalculator.Web
-RUN dotnet restore
+RUN apk update && \ apk add --no-cache icu-libs
+RUN dotnet publish -c Release -o /app
 
-RUN dotnet publish -c Release -o out
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
-WORKDIR /app
-COPY --from=build /app/src/FlyCalculator.Web/out ./
-
+FROM base AS final
 ENV ASPNETCORE_ENVIRONMENT Production
+ENV TZ=America/Sao_Paulo
+RUN apk update && \ apk add --no-cache icu-libs
+ENV LC_ALL pt_BR.UTF-8
+ENV LANG pt_BR.UTF-8
+RUN apk add tzdata && \ ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT false
+WORKDIR /app
+COPY --from=publish /app .
 
+EXPOSE 80
 ENTRYPOINT ["dotnet", "FlyCalculator.Web.dll"]

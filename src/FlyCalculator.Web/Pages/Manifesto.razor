@@ -3,6 +3,16 @@
 @page "/manifesto"
 
 <h3>@Title</h3>
-<CalculoAutonomia @bind-Total="Total" @bind-Etapa="Etapa"></CalculoAutonomia>
-<CalculoPesoDecolagem @bind-Pesos="Pesos" TotalAutonomia="Total"></CalculoPesoDecolagem>
-<CalculoPesoBalanceamento Etapa="Etapa" Total="Total" Pesos="Pesos"></CalculoPesoBalanceamento>
+<div class="row">
+  <div class="col mb-6">
+    <CalculoAutonomia @bind-Total="Total" @bind-Etapa="Etapa"></CalculoAutonomia>
+  </div>
+  <div class="col mb-6">
+    <CalculoPesoDecolagem @bind-Pesos="Pesos" TotalAutonomia="Total"></CalculoPesoDecolagem>
+  </div>
+</div>
+<div class="row">
+  <div class="col mb-4">
+    <CalculoPesoBalanceamento Etapa="Etapa" Total="Total" Pesos="Pesos"></CalculoPesoBalanceamento>
+  </div>
+</div>
