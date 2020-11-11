@@ -6,3 +6,4 @@ RUN dotnet publish -c Release -o output
 FROM nginx:alpine
 WORKDIR /app
 COPY --from=publish /build/output/wwwroot /usr/share/nginx/html
+EXPOSE 8080
